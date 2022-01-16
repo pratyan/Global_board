@@ -13,5 +13,5 @@ A Web3.js application powered by react.js and Soilidity (React-Dapp). 'Global Bo
 - Frontend: React.js
 - Deployment: Python
 
-![](Img/ss.png)
+![](Img/sss.png)
 
