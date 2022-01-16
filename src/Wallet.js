@@ -2,11 +2,12 @@ import {React, useState, useEffect} from 'react'
 import {ethers} from 'ethers'
 import styles from './Wallet.module.css'
 import global_board_abi from './Contracts/global_board_abi.json'
+import TextField from "@material-ui/core/TextField";
 
 
 
 const Wallet = () => {
-	const contractAddress = '0xe78A0F7E598Cc8b0Bb87894B0F60dD2a88d6a8Ab';
+	const contractAddress = '0x59d3631c86BbE35EF041872d502F218A39FBa150';
 
 	const [connButtonText, setConnButtonText] = useState("Connect Wallet");
 	const [errorMessage, setErrorMessage] = useState(null);
@@ -15,6 +16,10 @@ const Wallet = () => {
 	const [provider, setProvider] = useState(null);
 	const [signer, setSigner] = useState(null);
 	const [contract, setContract] = useState(null);
+
+	const [msgs, setmsgs] = useState("");
+	const [msg, setmsg] = useState(null);
+
 
 	const connectWalletHandler = () => {
 		if (window.ethereum && window.ethereum.isMetaMask) {
@@ -60,6 +65,13 @@ const Wallet = () => {
 
 	// }, [contract])
 
+	const sendMsgHandler = async () => {
+		let txh = await contract.record(msg);
+
+		let mm = await contract.recive()
+		setmsgs(mm);
+	}
+
 
 	return (
 		<div>
@@ -72,6 +84,30 @@ const Wallet = () => {
 				</div>
 
 			</div>
+
+			<div
+		      style={{
+		        alignSelf: 'center',
+		        color: 'orange',
+		        Padding: 100,
+		      }}
+		    >
+
+		      <TextField
+		        value={msg}
+		        label="type your message"
+		        onChange={(e) => {
+		          setmsg(e.target.value);
+		        }}
+		      />
+		      <button className={styles.button6} onClick={sendMsgHandler}>Send</button>
+		      <h3>Hall Of Msgs: </h3>
+		      <h4 
+		      	style={{
+		        color: 'black',
+		      }}>{msgs}</h4>
+		    </div>
+
 			{errorMessage}
 		</div>
 		);
