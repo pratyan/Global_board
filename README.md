@@ -4,3 +4,14 @@ A Web3.js application powered by react.js and Soilidity (React-Dapp). 'Global Bo
 
 ## Dependencies:
 -ethers.js
+-@material-ui
+
+
+## Utilities:
+- Blockchain: ganache-cli
+- SmartContract: Solidity
+- Frontend: React.js
+- Deployment: Python
+
+
+
